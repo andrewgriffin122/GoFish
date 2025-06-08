@@ -1,4 +1,5 @@
 #include "Hand.h"
+#include "Deck.h"
 
 //Initializing current spot of hand
 Hand::Hand()

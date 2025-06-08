@@ -1,9 +1,9 @@
 #include "GoFish.h"
 #include "Hand.h"
+#include "Deck.h"
 
 GoFish::GoFish()
 {
-	intChoice = 0;
 	playerOneScore = 0;
 	playerTwoScore = 0;
 	playing = true;
@@ -13,8 +13,11 @@ GoFish::GoFish()
 //Asks which card to search for. If card is outside of bounds, then asks again
 int GoFish::getUserChoice()
 {
+	//need to make this handle none numerical imputs
+	// 
+	// 
 	//Reseting value
-	intChoice = 0;
+	int static intChoice = 0;
 
 	std::cout << "\n";
 	std::cout << "Ask for an Ace(1), Two(2), Three(3), Four(4), Five(5), Six(6), Seven(7), \n Eight(8), Nine(9), Ten(10), Jack(11), Queen(12), or a King(13):";
@@ -23,6 +26,8 @@ int GoFish::getUserChoice()
 	//Bounds for the cards
 	while (intChoice < MIN_RANK_NUM || intChoice > MAX_RANK_NUM)
 	{
+		intChoice = 0;
+
 		std::cout << "Invalid selection. Please choose from the given options\n:";
 		std::cin >> intChoice;
 	}
@@ -115,14 +120,11 @@ void GoFish::playTurn(Deck & deck, Hand & turn, Hand & other)
 }
 
 //Check if the game is over by an empty deck and both hands are empty
-void GoFish::checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& playerTwo)
+bool GoFish::checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& playerTwo)
 {
 	//repeat until no cards left in deck or either hand
 	if (deck.getCurrentSpotInDeck() > MAX_HAND_SIZE && playerOne.getSpotInHand() == STARTING_HAND_SPOT && playerTwo.getSpotInHand() == STARTING_HAND_SPOT)
 	{
-		//Stops the while loop of the game
-		playing = false;
-
 		//Displays who wins
 		if (playerOneScore > playerTwoScore)
 		{
@@ -137,7 +139,11 @@ void GoFish::checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& p
 		{
 			std::cout << "Tie game!\n";
 		}
+
+		return true;
 	}
+
+	return false;
 }
 
 //Entry point for Go Fish, handles running the entire game
@@ -163,6 +169,6 @@ void GoFish::gameLoop(Deck &deck, Hand &playerOne, Hand &playerTwo)
 
 		playerOneTurn = !playerOneTurn;
 
-		checkEndGame(deck, playerOne, playerTwo);
+		playing = !checkEndGame(deck, playerOne, playerTwo);
 	}
 }

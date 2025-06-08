@@ -1,4 +1,5 @@
 #include "Hand.h"
+#include "Deck.h"
 #include "GoFish.h"
 
 int main()

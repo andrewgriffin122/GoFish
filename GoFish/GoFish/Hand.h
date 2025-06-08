@@ -1,5 +1,7 @@
-#include "Deck.h"
+#include "Card.h"
 #pragma once
+
+class Deck;
 
 //Can have 3 of each card before you play it, 
 // so 3x thumber of ranks + 1 so there is space to add the card before playing it

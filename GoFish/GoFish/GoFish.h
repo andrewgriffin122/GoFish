@@ -10,7 +10,6 @@ class GoFish
 private:
 	bool playing;
 	bool playerOneTurn;
-	int intChoice;
 	int playerOneScore, playerTwoScore;
 
 	//Private functions as only the gameLoop needs to be visable to main
@@ -25,7 +24,7 @@ private:
 	void playTurn(Deck& deck, Hand& turn, Hand& others);
 
 	//Check if the game is over by an empty deck and both hands are empty
-	void checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& playerTwo);
+	bool checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& playerTwo);
 
 public:
 	GoFish();
