@@ -2,13 +2,14 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
+#include <array>
 #pragma once
 
 
 class Deck {
 private:
     //Deck is an array as there is a fixed size of cards
-    Card deck[FULL_DECK];
+    std::array<Card, FULL_DECK> deck;
     int currentSpotInDeck;
 
 public:

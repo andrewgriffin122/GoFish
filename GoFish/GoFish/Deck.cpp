@@ -48,7 +48,7 @@ void Deck::shuffleDeck()
 {
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 
-    std::shuffle(deck, deck + (NUM_RANKS * NUM_SUITS), std::default_random_engine(seed));
+    std::shuffle(deck.begin(), deck.end(), std::default_random_engine(seed));
 }
 
 //To make displaing hand easier
