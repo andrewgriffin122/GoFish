@@ -1,5 +1,11 @@
 #include "Card.h"
 
+Card::Card()
+{
+    suit = Suit::OVER_SUIT;
+    rank = Rank::OVER_RANK;
+}
+
 //Parameterized Constructor
 Card::Card(Suit s, Rank r)
 {
@@ -64,7 +70,7 @@ const char* displaySuit(const Suit &suit)
 }
 
 //Used to sort a hand, taken from:https://www.geeksforgeeks.org/sort-c-stl/
-bool compareRanks(const Card &first,const Card &second)
+bool compareRanks(const Card &first, const Card &second)
 {
-    return first.rank < second.rank;
+    return static_cast<int>(first.rank) < static_cast<int>(second.rank);
 }

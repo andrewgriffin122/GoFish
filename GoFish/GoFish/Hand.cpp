@@ -1,5 +1,6 @@
 #include "Hand.h"
 #include "Deck.h"
+#include <algorithm>
 
 //Initializing current spot of hand
 Hand::Hand()
@@ -114,7 +115,7 @@ bool Hand::checkHasAllOfRank(const Rank& target)
 //Sort using compareRanks, which only uses the card.rank and checks the enum values against each other
 void Hand::sortByRank()
 {
-    std::sort(hand, hand + currentSpotInHand, compareRanks);
+    std::sort(hand.begin(), hand.end(), compareRanks);
 }
 
 //To make printing the hand easier

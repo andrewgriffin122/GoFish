@@ -13,7 +13,7 @@ GoFish::GoFish()
 //Asks which card to search for. If card is outside of bounds, then asks again
 int GoFish::getUserChoice()
 {
-	//need to make this handle none numerical imputs
+	//need to make this handle non numerical imputs
 	// 
 	// 
 	//Reseting value

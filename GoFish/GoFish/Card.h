@@ -10,10 +10,10 @@ const int MAX_RANK_NUM = 13;
 
 //Rank and suit both use uint8_t as an underlying type since the maximum value for each is less than 1 byte
 enum class Rank : uint8_t{
-    Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King
+    Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, OVER_RANK
 };
 enum class Suit : uint8_t{
-    Clubs, Diamonds, Hearts, Spades
+    Clubs, Diamonds, Hearts, Spades, OVER_SUIT
 };
 
 //Created as a struct and left everything public so rank and suit member variables can be freely used
@@ -21,7 +21,7 @@ struct Card {
     Suit suit = Suit::Clubs;
     Rank rank = Rank::Ace;
 
-    Card() {}
+    Card();
     Card(Suit s, Rank r);
 
     void printCard() const;

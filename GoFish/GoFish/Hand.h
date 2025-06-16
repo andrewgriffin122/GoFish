@@ -1,4 +1,5 @@
 #include "Card.h"
+#include <array>
 #pragma once
 
 class Deck;
@@ -16,7 +17,7 @@ class Hand
 {
 private:
 	//Hand is an array as the max number of cards you can get in go fish is three of each suit before the fourth causes you to score
-	Card hand[MAX_HAND_SIZE];
+	std::array<Card, MAX_HAND_SIZE> hand;
 	int currentSpotInHand;
 
 public:

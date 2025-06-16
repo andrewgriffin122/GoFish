@@ -15,7 +15,7 @@ Card Deck::getCardFromDeck(bool &validCard)
     if (currentSpotInDeck == FULL_DECK)
     {
         validCard = false;
-        return Card(Suit::Clubs, Rank::Ace);
+        return Card(Suit::OVER_SUIT, Rank::OVER_RANK);
     }
 
     validCard = true;
