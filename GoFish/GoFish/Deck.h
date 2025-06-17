@@ -3,6 +3,7 @@
 #include <random>
 #include <chrono>
 #include <array>
+#include <optional>
 #pragma once
 
 
@@ -18,8 +19,8 @@ public:
     int getCurrentSpotInDeck() const;
 
     //Gets the current card and moves along the counter
-    Card getCardFromDeck(bool &validCard);
-
+    std::optional<Card> getCardFromDeck();
+    
     //Functions to manipulate the deck initially 
     void fillDeck();
     void shuffleDeck();

@@ -18,12 +18,9 @@ int Hand::getSpotInHand() const
 //Also checks if there is a valid card returned, cards will be invalid if the end of deck has been reached
 void Hand::addCardToHandFromDeck(Deck &deck)
 {
-    bool validCard;
-
-    Card temp = deck.getCardFromDeck(validCard);
-    if (validCard)
+    if (auto temp = deck.getCardFromDeck())
     {
-        hand[currentSpotInHand] = temp;
+        hand[currentSpotInHand] = *temp;
         currentSpotInHand++;
     }
 }

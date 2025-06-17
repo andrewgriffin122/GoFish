@@ -10,15 +10,13 @@ Deck::Deck()
 
 //Moves counter for top of deck and returns the top of deck
 //Also checks if the end of the deck has been reached, and changes validCard as needed
-Card Deck::getCardFromDeck(bool &validCard)
+std::optional<Card> Deck::getCardFromDeck()
 {
     if (currentSpotInDeck == FULL_DECK)
     {
-        validCard = false;
-        return Card(Suit::OVER_SUIT, Rank::OVER_RANK);
+        return std::nullopt;
     }
 
-    validCard = true;
     currentSpotInDeck++;
     return deck[currentSpotInDeck - 1];
 }
