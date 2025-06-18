@@ -28,7 +28,7 @@ public:
 	//Adding to and removing from the Hand using the Deck class
 	void addCardToHandFromDeck(Deck &deck);
 	void addCardsToHand(Card cards[], const int &num);
-	bool removeCardFromHand(const Card &card);
+	bool removeCardFromHand(const Card &cardToRemove);
 	void removeAllOfRank(const Rank &rank, Card removedCard[], int &spot);
 
 	//To see if theres a match for Go Fish

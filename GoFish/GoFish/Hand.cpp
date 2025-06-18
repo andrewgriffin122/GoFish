@@ -38,31 +38,15 @@ void Hand::addCardsToHand(Card cards[], const int &num)
 
 //Goes through hand to find the passed in card 
 // Removes the card by moving over all the cards after it in the hand
-bool Hand::removeCardFromHand(const Card &card)
+bool Hand::removeCardFromHand(const Card &cardToRemove)
 {
-    int i;
-    int spotInHand = INVALID_CARD;
+    auto new_end = std::remove_if(hand.begin(), hand.begin() + currentSpotInHand, 
+                    [cardToRemove](Card handCard) {return handCard == cardToRemove; });
 
-    //Finds spot of card
-    for (i = 0; i < currentSpotInHand; i++)
-    {
-        if (hand[i] == card)
-        {
-            spotInHand = i;
-            break;
-        }
-    }
-
-    //If card is not found, then return and do nothing else
-    if (spotInHand == INVALID_CARD)
+    //nothing changed
+    if (new_end == hand.begin() + currentSpotInHand)
     {
         return false;
-    }
-
-    //Moves each card in hand over to remove the passed in card
-    for (i = spotInHand; i < currentSpotInHand; i++)
-    {
-        hand[i] = hand[i + 1];
     }
 
     currentSpotInHand--;
