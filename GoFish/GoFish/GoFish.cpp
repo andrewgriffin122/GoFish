@@ -1,6 +1,8 @@
 #include "GoFish.h"
 #include "Hand.h"
 #include "Deck.h"
+#include <algorithm>
+#include <string>
 
 GoFish::GoFish()
 {
@@ -13,23 +15,28 @@ GoFish::GoFish()
 //Asks which card to search for. If card is outside of bounds, then asks again
 int GoFish::getUserChoice()
 {
-	//need to make this handle non numerical imputs
-	// 
-	// 
-	//Reseting value
+	//Resetting values
 	int static intChoice = 0;
+	std::string static choice = "A";
 
 	std::cout << "\n";
 	std::cout << "Ask for an Ace(1), Two(2), Three(3), Four(4), Five(5), Six(6), Seven(7), \n Eight(8), Nine(9), Ten(10), Jack(11), Queen(12), or a King(13):";
-	std::cin >> intChoice;
-	
-	//Bounds for the cards
-	while (intChoice < MIN_RANK_NUM || intChoice > MAX_RANK_NUM)
-	{
-		intChoice = 0;
 
-		std::cout << "Invalid selection. Please choose from the given options\n:";
-		std::cin >> intChoice;
+	while (true)
+	{
+		std::cin >> choice;
+		if (std::all_of(choice.begin(), choice.end(), std::isdigit))
+		{
+			intChoice = std::stoi(choice);
+
+			//Bounds for the cards
+			if (intChoice > MIN_RANK_NUM || intChoice < MAX_RANK_NUM)
+			{
+				break;
+			}
+		}
+
+		std::cout << "Invalid selection. Please choose from the given options:";
 	}
 
 	std::cout << "\n";
@@ -120,7 +127,7 @@ void GoFish::playTurn(Deck & deck, Hand & turn, Hand & other)
 }
 
 //Check if the game is over by an empty deck and both hands are empty
-bool GoFish::checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& playerTwo)
+bool GoFish::checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& playerTwo) const
 {
 	//repeat until no cards left in deck or either hand
 	if (deck.getCurrentSpotInDeck() > MAX_HAND_SIZE && playerOne.getSpotInHand() == STARTING_HAND_SPOT && playerTwo.getSpotInHand() == STARTING_HAND_SPOT)

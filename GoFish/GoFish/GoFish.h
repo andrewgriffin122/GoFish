@@ -24,7 +24,7 @@ private:
 	void playTurn(Deck& deck, Hand& turn, Hand& others);
 
 	//Check if the game is over by an empty deck and both hands are empty
-	bool checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& playerTwo);
+	bool checkEndGame(const Deck& deck, const Hand& playerOne, const Hand& playerTwo) const;
 
 public:
 	GoFish();
