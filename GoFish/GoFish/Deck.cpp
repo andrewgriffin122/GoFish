@@ -1,4 +1,6 @@
 #include "Deck.h"
+#include <chrono>
+#include <random>
 
 //Sets currentSpot as 0, which would be the top of the deck
 //Fills up the deck with cards

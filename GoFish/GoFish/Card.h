@@ -1,12 +1,12 @@
 #include <iostream>
 #pragma once
 
-const int FULL_DECK = 52;
-const int NUM_SUITS = 4;
-const int NUM_RANKS = 13;
+static const int FULL_DECK = 52;
+static const int NUM_SUITS = 4;
+static const int NUM_RANKS = 13;
 
-const int MIN_RANK_NUM = 1;
-const int MAX_RANK_NUM = 13;
+static const int MIN_RANK_NUM = 1;
+static const int MAX_RANK_NUM = 13;
 
 //Rank and suit both use uint8_t as an underlying type since the maximum value for each is less than 1 byte
 enum class Rank : uint8_t{

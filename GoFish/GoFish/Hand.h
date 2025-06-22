@@ -6,12 +6,12 @@ class Deck;
 
 //Can have 3 of each card before you play it, 
 // so 3x thumber of ranks + 1 so there is space to add the card before playing it
-const int MAX_HAND_SIZE = (NUM_SUITS * NUM_RANKS) - NUM_RANKS + 1;
+static const int MAX_HAND_SIZE = (NUM_SUITS * NUM_RANKS) - NUM_RANKS + 1;
 
 //Values for searching
-const int INVALID_CARD = -1;
-const int STARTING_SEARCH_SPOT = 0;
-const int STARTING_HAND_SPOT = 0;
+static const int INVALID_CARD = -1;
+static const int STARTING_SEARCH_SPOT = 0;
+static const int STARTING_HAND_SPOT = 0;
 
 class Hand
 {

@@ -9,4 +9,6 @@ int main()
     Hand h1, h2; //Go fish has been made as a two player game so two hands, or players, are made
 
     game.gameLoop(deck, h1, h2);
+
+    return 0;
 }
