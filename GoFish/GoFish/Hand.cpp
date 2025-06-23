@@ -58,7 +58,7 @@ bool Hand::removeCardFromHand(const Card &cardToRemove)
 void Hand::removeAllOfRank(const Rank &rank, Card removedCard[], int &spot)
 {
     spot = STARTING_SEARCH_SPOT;
-    Card temp;
+    static Card temp = Card(Suit::OVER_SUIT, Rank::OVER_RANK);
 
     //For each suit, create a card of that Rank, find it in the hand and remove it
     for (int i = 0; i < NUM_SUITS; i++)
