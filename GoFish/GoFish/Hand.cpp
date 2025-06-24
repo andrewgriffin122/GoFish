@@ -41,7 +41,7 @@ void Hand::addCardsToHand(Card cards[], const int &num)
 bool Hand::removeCardFromHand(const Card &cardToRemove)
 {
     auto new_end = std::remove_if(hand.begin(), hand.begin() + currentSpotInHand, 
-                    [cardToRemove](Card handCard) {return handCard == cardToRemove; });
+                    [&cardToRemove](const Card& handCard) {return handCard == cardToRemove; });
 
     //nothing changed
     if (new_end == hand.begin() + currentSpotInHand)
@@ -58,7 +58,9 @@ bool Hand::removeCardFromHand(const Card &cardToRemove)
 void Hand::removeAllOfRank(const Rank &rank, Card removedCard[], int &spot)
 {
     spot = STARTING_SEARCH_SPOT;
-    static Card temp = Card(Suit::OVER_SUIT, Rank::OVER_RANK);
+    static Card temp;
+
+    temp = Card(Suit::OVER_SUIT, Rank::OVER_RANK);
 
     //For each suit, create a card of that Rank, find it in the hand and remove it
     for (int i = 0; i < NUM_SUITS; i++)
@@ -75,22 +77,10 @@ void Hand::removeAllOfRank(const Rank &rank, Card removedCard[], int &spot)
 //Check if the given hand has all of a certain rank
 bool Hand::checkHasAllOfRank(const Rank& target)
 {
-    int count = 0;
+    int count = std::count_if(hand.begin(), hand.begin() + currentSpotInHand,
+        [&target](const Card& handCard) {return handCard.rank == target; });
 
-    for (int i = 0; i < currentSpotInHand; i++)
-    {
-        if (hand[i].rank == target)
-        {
-            count++;
-            //Max number of cards for each rank is how many suits there are
-            if (count == NUM_SUITS)
-            {
-                return true;
-            }
-        }
-    }
-
-    return false;
+    return count == NUM_SUITS;
 }
 
 //Sort using compareRanks, which only uses the card.rank and checks the enum values against each other

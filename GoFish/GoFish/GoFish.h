@@ -3,7 +3,7 @@
 class Deck;
 class Hand;
 
-const int STARTING_CARD_NUM = 20;
+const int STARTING_CARD_NUM = 7;
 
 class GoFish
 {
