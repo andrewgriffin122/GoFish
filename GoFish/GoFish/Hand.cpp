@@ -70,8 +70,8 @@ void Hand::removeAllOfRank(const Rank &rank, Card removedCard[], int &spot)
 //Check if the given hand has all of a certain rank using count_if
 bool Hand::checkHasAllOfRank(const Rank& target)
 {
-    int count = std::count_if(hand.begin(), hand.begin() + currentSpotInHand,
-        [&target](const Card& handCard) {return handCard.rank == target; });
+    int count = static_cast<int>(std::count_if(hand.begin(), hand.begin() + currentSpotInHand,
+        [&target](const Card& handCard) {return handCard.rank == target; }));
 
     return count == NUM_SUITS;
 }

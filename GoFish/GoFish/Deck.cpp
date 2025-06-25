@@ -45,7 +45,7 @@ void Deck::fillDeck()
 //from: https://cplusplus.com/reference/algorithm/shuffle/
 void Deck::shuffleDeck()
 {
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    unsigned seed = static_cast<unsigned>(std::chrono::system_clock::now().time_since_epoch().count());
 
     std::shuffle(deck.begin(), deck.end(), std::default_random_engine(seed));
 }

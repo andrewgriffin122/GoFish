@@ -26,7 +26,7 @@ int GoFish::getUserChoice()
 			intChoice = std::stoi(choice);
 
 			//Bounds for the cards
-			if (intChoice > MIN_RANK_NUM || intChoice < MAX_RANK_NUM)
+			if (intChoice >= MIN_RANK_NUM && intChoice <= MAX_RANK_NUM)
 			{
 				break;
 			}
