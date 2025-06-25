@@ -9,6 +9,12 @@ Deck::Deck() : currentSpotInDeck(0)
     fillDeck();
 }
 
+//To know how far along the deck the counter is
+int Deck::getCurrentSpotInDeck() const
+{
+    return currentSpotInDeck;
+}
+
 //Moves counter for top of deck and returns the top of deck
 //Also checks if the end of the deck has been reached, and changes validCard as needed
 std::optional<Card> Deck::getCardFromDeck()
@@ -20,12 +26,6 @@ std::optional<Card> Deck::getCardFromDeck()
 
     currentSpotInDeck++;
     return deck[currentSpotInDeck - 1];
-}
-
-//To know how far along the deck the counter is
-int Deck::getCurrentSpotInDeck() const
-{
-    return currentSpotInDeck;
 }
 
 //fill taken from: https://www.geeksforgeeks.org/how-to-represent-the-deck-of-cards-using-array-in-cpp/

@@ -56,16 +56,8 @@ void GoFish::initializeGame(Deck& deck, Hand& playerOne, Hand& playerTwo)
 	playerTwo.sortByRank();
 }
 
-//Asks which card to ask for, if other hand has it, removes from other hand and adds to current hand
-// //If other hand doesn't, draws a card from the deck
-//Checks if hand has all of a given rank
-void GoFish::playTurn(Deck & deck, Hand & turn, Hand & other)
+void GoFish::displayTurn(const Hand& turn) const
 {
-	//Static so they are only created once, and only in the scope of this function
-	static Rank rankChoice = Rank::Ace;
-	static Card removedCard[NUM_SUITS];
-	static int spot = STARTING_SEARCH_SPOT;
-
 	//Displays whose turn it is
 	if (playerOneTurn)
 	{
@@ -76,6 +68,42 @@ void GoFish::playTurn(Deck & deck, Hand & turn, Hand & other)
 		std::cout << "Player Two's hand:\n";
 	}
 	turn.printHand();
+}
+
+//If a player has all of a given rank they score a point in Go Fish
+bool GoFish::addToScore(Hand& turn, const Rank& choice)
+{
+	if (turn.checkHasAllOfRank(choice))
+	{
+		//Remove cards from hand so the other player can't ask for them, or the cards get scored multiple times
+		std::cout << "You got all four " << displayRank(choice) << " cards!\n\n";
+
+		if (playerOneTurn)
+		{
+			playerOneScore++;
+		}
+		else
+		{
+			playerTwoScore++;
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+//Asks which card to ask for, if other hand has it, removes from other hand and adds to current hand
+// //If other hand doesn't, draws a card from the deck
+//Checks if hand has all of a given rank
+void GoFish::playTurn(Deck & deck, Hand & turn, Hand & other)
+{
+	//Static so they are only created once, and only in the scope of this function
+	static Rank rankChoice = Rank::Ace;
+	static Card removedCard[NUM_SUITS];
+	static int spot = STARTING_SEARCH_SPOT;
+
+	displayTurn(turn);
 
 	//Gets the rank using the getUserChoice() function
 	rankChoice = static_cast<Rank>(getUserChoice());
@@ -99,22 +127,10 @@ void GoFish::playTurn(Deck & deck, Hand & turn, Hand & other)
 		turn.sortByRank();
 	}
 
-	//If a player has all of a given rank they score a point in Go Fish
-	if (turn.checkHasAllOfRank(rankChoice))
+	if (addToScore(turn, rankChoice))
 	{
-		std::cout << "You got all four " << displayRank(rankChoice) << " cards!\n\n";
-
-		//Remove cards from hand so the other player can't ask for them, or the cards get scored muultiple times
+		//If a player scores, then remove the cards from the deck
 		turn.removeAllOfRank(rankChoice, removedCard, spot);
-
-		if (playerOneTurn)
-		{
-			playerOneScore++;
-		}
-		else
-		{
-			playerTwoScore++;
-		}
 	}
 
 	//Dividing line to make things slightly easier to read

@@ -6,7 +6,8 @@ class Deck;
 
 //Can have 3 of each card before you play it, 
 // so 3x thumber of ranks + 1 so there is space to add the card before playing it
-static const int MAX_HAND_SIZE = (NUM_SUITS * NUM_RANKS) - NUM_RANKS + 1;
+//constexpr as this value can be computed at compile time, and doesnt need to be computed at run time
+static constexpr int MAX_HAND_SIZE = (NUM_SUITS * NUM_RANKS) - NUM_RANKS + 1;
 
 //Values for searching
 static const int INVALID_CARD = -1;

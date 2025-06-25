@@ -58,8 +58,6 @@ void Hand::removeAllOfRank(const Rank &rank, Card removedCard[], int &spot)
     spot = STARTING_SEARCH_SPOT;
     static Card temp;
 
-    temp = Card(Suit::OVER_SUIT, Rank::OVER_RANK);
-
     //For each suit, create a card of that Rank, find it in the hand and remove it
     for (int i = 0; i < NUM_SUITS; i++)
     {
@@ -84,7 +82,7 @@ bool Hand::checkHasAllOfRank(const Rank& target)
 //Sort using compareRanks, which only uses the card.rank and checks the enum values against each other
 void Hand::sortByRank()
 {
-    std::sort(hand.begin(), hand.end(), compareRanks);
+    std::sort(hand.begin(), hand.begin() + currentSpotInHand, compareRanks);
 }
 
 //To make printing the hand easier

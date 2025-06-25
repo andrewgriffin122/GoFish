@@ -2,6 +2,7 @@
 
 class Deck;
 class Hand;
+enum class Rank : char;
 
 const int STARTING_CARD_NUM = 7;
 
@@ -17,6 +18,10 @@ private:
 
 	//Shuffles deck, adds cards to each hand, sorts hand for displaying
 	void initializeGame(Deck& deck, Hand& playerOne, Hand& playerTwo);
+
+	void displayTurn(const Hand& turn) const;
+
+	bool addToScore(Hand& turn, const Rank &choice);
 
 	//Asks which card to ask for, if other hand has it, removes from other hand and adds to current hand
 	//If other hand doesn't, draws a card from the deck

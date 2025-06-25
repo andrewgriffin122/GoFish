@@ -8,11 +8,11 @@ static const int NUM_RANKS = 13;
 static const int MIN_RANK_NUM = 1;
 static const int MAX_RANK_NUM = 13;
 
-//Rank and suit both use uint8_t as an underlying type since the maximum value for each is less than 1 byte
-enum class Rank : uint8_t{
+//Rank and suit both use char as an underlying type since the maximum value for each is less than 1 byte
+enum class Rank : char{
     Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, OVER_RANK
 };
-enum class Suit : uint8_t{
+enum class Suit : char{
     Clubs, Diamonds, Hearts, Spades, OVER_SUIT
 };
 
