@@ -11,9 +11,7 @@ int Hand::getSpotInHand() const
     return currentSpotInHand;
 }
 
-//Pass deck in by refrence to change the current spot of the deck
 //Takes first card from deck and adds to the hand, and moves max of hand
-//Also checks if there is a valid card returned, cards will be invalid if the end of deck has been reached
 void Hand::addCardToHandFromDeck(Deck &deck)
 {
     if (auto temp = deck.getCardFromDeck())
@@ -34,8 +32,8 @@ void Hand::addCardsToHand(Card cards[], const int &num)
     }
 }
 
-//Goes through hand to find the passed in card 
-// Removes the card by moving over all the cards after it in the hand
+//Uses remove_if to find and remove the cardToRemove. 
+// Decreases currentSpotInHand if the operation is successful
 bool Hand::removeCardFromHand(const Card &cardToRemove)
 {
     auto new_end = std::remove_if(hand.begin(), hand.begin() + currentSpotInHand, 
@@ -51,7 +49,6 @@ bool Hand::removeCardFromHand(const Card &cardToRemove)
     return true;
 }
 
-//Simple function to remove all of a given rank
 //Moves the spot variable so other functions can know how many have been removed
 void Hand::removeAllOfRank(const Rank &rank, Card removedCard[], int &spot)
 {
@@ -70,7 +67,7 @@ void Hand::removeAllOfRank(const Rank &rank, Card removedCard[], int &spot)
     }
 }
 
-//Check if the given hand has all of a certain rank
+//Check if the given hand has all of a certain rank using count_if
 bool Hand::checkHasAllOfRank(const Rank& target)
 {
     int count = std::count_if(hand.begin(), hand.begin() + currentSpotInHand,

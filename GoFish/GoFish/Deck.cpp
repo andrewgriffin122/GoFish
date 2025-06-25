@@ -16,7 +16,7 @@ int Deck::getCurrentSpotInDeck() const
 }
 
 //Moves counter for top of deck and returns the top of deck
-//Also checks if the end of the deck has been reached, and changes validCard as needed
+//Also checks if the end of the deck has been reached, in which case no card is returned with optional
 std::optional<Card> Deck::getCardFromDeck()
 {
     if (currentSpotInDeck == FULL_DECK)

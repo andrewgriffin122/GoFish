@@ -20,6 +20,7 @@ int GoFish::getUserChoice()
 	while (true)
 	{
 		std::cin >> choice;
+		//checks if the input is a number, if it is then converts
 		if (std::all_of(choice.begin(), choice.end(), std::isdigit))
 		{
 			intChoice = std::stoi(choice);
@@ -56,9 +57,9 @@ void GoFish::initializeGame(Deck& deck, Hand& playerOne, Hand& playerTwo)
 	playerTwo.sortByRank();
 }
 
+//Displays turn and cards at start of each turn
 void GoFish::displayTurn(const Hand& turn) const
 {
-	//Displays whose turn it is
 	if (playerOneTurn)
 	{
 		std::cout << "Player One's hand:\n";
@@ -71,6 +72,7 @@ void GoFish::displayTurn(const Hand& turn) const
 }
 
 //If a player has all of a given rank they score a point in Go Fish
+//Returns true so cards can be removed, returns false if not all cards are there
 bool GoFish::addToScore(Hand& turn, const Rank& choice)
 {
 	if (turn.checkHasAllOfRank(choice))
@@ -117,15 +119,14 @@ void GoFish::playTurn(Deck & deck, Hand & turn, Hand & other)
 	if (spot != STARTING_SEARCH_SPOT)
 	{
 		turn.addCardsToHand(removedCard, spot);
-		turn.sortByRank();
 	}
 	//If no cards have been removed, then its Go Fish
 	else
 	{
 		std::cout << "Go Fish!\n\n";
 		turn.addCardToHandFromDeck(deck);
-		turn.sortByRank();
 	}
+	turn.sortByRank();
 
 	if (addToScore(turn, rankChoice))
 	{

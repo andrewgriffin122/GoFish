@@ -20,7 +20,6 @@ private:
 	void initializeGame(Deck& deck, Hand& playerOne, Hand& playerTwo);
 
 	void displayTurn(const Hand& turn) const;
-
 	bool addToScore(Hand& turn, const Rank &choice);
 
 	//Asks which card to ask for, if other hand has it, removes from other hand and adds to current hand
