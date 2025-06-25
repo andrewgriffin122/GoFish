@@ -3,10 +3,8 @@
 #include <algorithm>
 
 //Initializing current spot of hand
-Hand::Hand()
-{
-    currentSpotInHand = STARTING_HAND_SPOT;
-}
+Hand::Hand() : currentSpotInHand(STARTING_HAND_SPOT)
+{ }
 
 int Hand::getSpotInHand() const
 {

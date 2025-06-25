@@ -1,10 +1,7 @@
 #include "Card.h"
 
-Card::Card()
-{
-    suit = Suit::OVER_SUIT;
-    rank = Rank::OVER_RANK;
-}
+Card::Card() : suit(Suit::OVER_SUIT), rank(Rank::OVER_RANK)
+{ }
 
 //Parameterized Constructor
 Card::Card(Suit s, Rank r)

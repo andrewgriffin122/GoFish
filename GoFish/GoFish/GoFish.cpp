@@ -4,13 +4,8 @@
 #include <algorithm>
 #include <string>
 
-GoFish::GoFish()
-{
-	playerOneScore = 0;
-	playerTwoScore = 0;
-	playing = true;
-	playerOneTurn = true;
-}
+GoFish::GoFish() : playerOneScore(0), playerTwoScore(0), playing(true), playerOneTurn(true)
+{ }
 
 //Asks which card to search for. If card is outside of bounds, then asks again
 int GoFish::getUserChoice()

@@ -4,9 +4,8 @@
 
 //Sets currentSpot as 0, which would be the top of the deck
 //Fills up the deck with cards
-Deck::Deck()
+Deck::Deck() : currentSpotInDeck(0)
 {
-    currentSpotInDeck = 0;
     fillDeck();
 }
 
